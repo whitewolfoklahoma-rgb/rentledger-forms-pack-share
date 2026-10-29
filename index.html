@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentLedger Landlord Forms Pack — Receipts, Notices, Checklists &amp; Letters</title>
+<style>
+:root{
+  --bg:#f4f6f8; --card:#ffffff; --ink:#22303c; --muted:#71808d;
+  --blue:#1f4e5f; --blue2:#2a6a80; --teal:#2e8b74; --amber:#e0a83c; --amber2:#f5c95c;
+  --red:#b23a2e; --redbg:#f8e3e0; --greenbg:#e2efe6; --line:#dde3e8; --soft:#eef2f4;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.45;}
+header.app{background:var(--blue); color:#fff; padding:14px 16px 10px;}
+header.app .brand{font-size:24px; font-weight:800; letter-spacing:.2px;}
+header.app .brand .gold{color:var(--amber2);}
+header.app .tag{font-size:13px; opacity:.85; margin-top:2px;}
+nav.tabs{display:flex; overflow-x:auto; background:var(--blue); padding:0 6px 8px; gap:4px; scrollbar-width:none;}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{flex:0 0 auto; min-height:42px; padding:8px 14px; border:0; border-radius:20px; background:rgba(255,255,255,.14); color:#fff; font-size:15px; font-weight:600; cursor:pointer;}
+nav.tabs button.active{background:var(--amber); color:#3a2c05;}
+main{max-width:980px; margin:0 auto; padding:14px 12px 40px;}
+h2.view-title{margin:4px 2px 12px; font-size:21px;}
+h3{margin:18px 2px 8px; font-size:17px;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:12px; box-shadow:0 1px 2px rgba(30,50,60,.05);}
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px;}
+.grid.tpl{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));}
+.tpl-card{cursor:pointer; text-align:left; font:inherit; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; box-shadow:0 1px 2px rgba(30,50,60,.05);}
+.tpl-card:hover{border-color:var(--amber);}
+.tpl-card .ic{font-size:26px;}
+.tpl-card .nm{font-weight:800; font-size:16.5px; margin-top:4px;}
+.tpl-card .ds{color:var(--muted); font-size:13.5px; margin-top:2px;}
+.stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px;}
+.stat .k{font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; font-weight:700;}
+.stat .v{font-size:24px; font-weight:800; margin-top:2px;}
+.stat .s{font-size:13px; color:var(--muted); margin-top:2px;}
+.bad{color:var(--red); font-weight:700;}
+.good{color:var(--teal); font-weight:700;}
+label{display:block; font-size:13.5px; font-weight:600; color:var(--muted); margin:10px 0 4px;}
+input,select,textarea{width:100%; min-height:44px; padding:9px 10px; font-size:16px; border:1.5px solid var(--line); border-radius:9px; background:#fff; color:var(--ink); font-family:inherit;}
+textarea{min-height:70px;}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--amber); border-color:var(--amber);}
+.row{display:flex; gap:10px; flex-wrap:wrap;}
+.row > div{flex:1 1 140px;}
+button.btn{min-height:44px; padding:10px 18px; border:0; border-radius:9px; background:var(--blue); color:#fff; font-size:16px; font-weight:700; cursor:pointer;}
+button.btn:hover{background:var(--blue2);}
+button.btn.amber{background:var(--amber); color:#3a2c05;}
+button.btn.ghost{background:var(--soft); color:var(--ink); border:1px solid var(--line);}
+button.btn.danger{background:var(--red);}
+button.btn.small{min-height:38px; padding:6px 12px; font-size:14px;min-height:40px;}
+button.btn:disabled{opacity:.5; cursor:not-allowed;}
+table{width:100%; border-collapse:collapse; font-size:14.5px;}
+th,td{padding:8px 6px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+th{color:var(--muted); font-size:12.5px; text-transform:uppercase; letter-spacing:.4px;}
+td.num,th.num{text-align:right;}
+tr.tot td{font-weight:800; border-top:2px solid var(--ink); border-bottom:0;}
+.empty{color:var(--muted); text-align:center; padding:18px 8px; font-size:15px;}
+.pill{display:inline-block; padding:2px 9px; border-radius:20px; font-size:12.5px; font-weight:700; background:var(--soft); color:var(--ink); white-space:nowrap;}
+.pill.green{background:var(--greenbg); color:#1e5c46;}
+.pill.red{background:var(--redbg); color:var(--red);}
+.pill.amber{background:#faf0d7; color:#7a5a12;}
+.mut{color:var(--muted);} .small{font-size:13px;}
+.del{background:none; border:0; color:var(--red); font-size:18px; cursor:pointer; min-width:38px; min-height:38px;}
+.flagbox{border:1.5px solid var(--amber); background:#fdf8ec; border-radius:9px; padding:10px 12px; margin:12px 0; font-size:14px;}
+.flagbox.red{border-color:var(--red); background:#fdf3f1;}
+.disc-banner{border:1px solid var(--line); background:var(--soft); border-radius:9px; padding:10px 12px; font-size:13.5px; color:var(--ink); margin-bottom:12px;}
+.derived{background:var(--soft); border-radius:9px; padding:10px 12px; margin-top:12px; font-size:15px;}
+.derived .amt{font-weight:800;}
+.lib-item{display:flex; gap:10px; align-items:flex-start; justify-content:space-between;}
+.lib-item .meta{color:var(--muted); font-size:13px;}
+.lib-actions{display:flex; gap:6px; flex-wrap:wrap; flex-shrink:0;}
+#toast{position:fixed; left:50%; bottom:22px; transform:translateX(-50%) translateY(20px); background:#22303c; color:#fff; padding:11px 18px; border-radius:24px; font-size:15px; font-weight:600; opacity:0; pointer-events:none; transition:all .25s; max-width:92vw; text-align:center; z-index:60;}
+#toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+#toast.err{background:var(--red);}
+.help-sec p{margin:6px 0;}
+.help-sec li{margin:4px 0;}
+footer.app{max-width:980px; margin:0 auto; padding:0 12px 30px; color:var(--muted); font-size:13px; text-align:center;}
+#printArea{display:none;}
+@media print{
+  header.app, nav.tabs, main, footer.app, #toast{display:none !important;}
+  #printArea{display:block; font-size:14px; color:#000;}
+  #printArea h1{font-size:20px; margin:2px 0 10px;}
+  #printArea h2{font-size:15px; margin:14px 0 6px;}
+  #printArea table{font-size:13px;}
+  #printArea .lh{border-bottom:2.5px solid #22303c; padding-bottom:8px; margin-bottom:12px;}
+  #printArea .lh .lhname{font-size:19px; font-weight:800;}
+  #printArea .lh .lhsub{font-size:12.5px; color:#444;}
+  #printArea .sig{margin-top:36px; display:flex; gap:40px;}
+  #printArea .sig div{flex:1; border-top:1px solid #333; padding-top:4px; font-size:12px; color:#555;}
+  #printArea .flagbox{border:1.5px solid #999; background:#f5f5f5;}
+  #printArea .disc{margin-top:26px; border-top:1px solid #999; padding-top:6px; font-size:10.5px; color:#444; font-style:italic;}
+  #printArea p{margin:7px 0;}
+}
+@media (max-width:480px){
+  th,td{padding:7px 4px; font-size:13.5px;}
+  header.app .brand{font-size:20px;}
+  .lib-item{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="brand">📋 RentLedger <span class="gold">Forms Pack</span></div>
+  <div class="tag">The landlord paperwork companion to RentLedger — fill in, print, done. No subscription, works offline.</div>
+</header>
+<nav class="tabs" id="tabs"></nav>
+<main id="main"></main>
+<footer class="app">RentLedger Forms Pack runs 100% offline. Your data lives only in this browser on this device — export a backup from Settings regularly. These forms are templates, not legal advice.</footer>
+<div id="toast"></div>
+<div id="printArea"></div>
+
+<script>
+'use strict';
+/* ============================================================
+   RentLedger Landlord Forms Pack — single-file app.
+   Fill-in → printable landlord forms. All data in localStorage.
+   Standalone companion to RentLedger; NOT a RentLedger backup.
+   ============================================================ */
+var LS_KEY = 'rentledgerforms_v1';
+
+var DISCLAIMER = 'Template provided for convenience only — this is not legal advice. Landlord–tenant law varies by state and city, including notice periods, late-fee limits, and security-deposit deadlines. Verify your local requirements, or consult a local attorney, before relying on this document.';
+
+var PAY_METHODS = ['Cash','Check','Bank transfer','Cash App','Venmo','Zelle','Money order','Card','Other'];
+var CONDITIONS = ['Good','Fair','Poor','Damaged','N/A'];
+var ROOM_DEFAULTS = ['Living room','Kitchen','Bedroom 1','Bedroom 2','Bathroom','Hallway & entry','Exterior & yard','Other'];
+var MAINT_CATS = ['Plumbing','Electrical','HVAC (heat/AC)','Appliance','Doors & locks','Pest','General repair','Other'];
+var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+/* ---------------- utils ---------------- */
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function num(v){
+  var n = parseFloat(String(v==null?'':v).replace(/[^0-9.\-]/g,''));
+  if(!isFinite(n)) return 0;
+  if(n<0) n = 0;
+  if(n>999999999) n = 999999999;
+  return Math.round(n*100)/100;
+}
+function intnum(v){ var n = Math.floor(num(v)); return n>999999 ? 999999 : n; }
+function fmt(n){
+  n = Math.round(num(n)*100)/100;
+  var neg = n<0; if(neg) n = -n;
+  var parts = n.toFixed(2).split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  return (neg?'-':'') + '$' + parts.join('.');
+}
+function validDate(s){
+  if(typeof s!=='string') return '';
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+  if(!m) return '';
+  var y=+m[1], mo=+m[2], d=+m[3];
+  if(mo<1||mo>12||d<1||d>31) return '';
+  var dt = new Date(Date.UTC(y,mo-1,d));
+  if(dt.getUTCFullYear()!==y || dt.getUTCMonth()!==mo-1 || dt.getUTCDate()!==d) return '';
+  return s;
+}
+function fmtDate(s){
+  s = validDate(s);
+  if(!s) return '—';
+  var p = s.split('-');
+  return MONTHS[+p[1]-1] + ' ' + (+p[2]) + ', ' + p[0];
+}
+function todayISO(){
+  var d = new Date();
+  var mo = ('0'+(d.getMonth()+1)).slice(-2), da = ('0'+d.getDate()).slice(-2);
+  return d.getFullYear() + '-' + mo + '-' + da;
+}
+var _uidc = 0;
+function uid(){ _uidc++; return 'f' + Date.now().toString(36) + _uidc.toString(36) + Math.floor(Math.random()*1e4).toString(36); }
+function toast(msg, isErr){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (isErr ? ' err' : '');
+  clearTimeout(t._h);
+  t._h = setTimeout(function(){ t.className=''; }, 2600);
+}
+
+/* ---------------- state ---------------- */
+function blankSettings(){
+  return { businessName:'', contactName:'', address:'', phone:'', email:'',
+           defaultRent:0, defaultLateFee:0, defaultDueDay:1, defaultGraceDays:5,
+           depositDays:30, payInstructions:'' };
+}
+function blankState(demoSeeded){
+  return { settings: blankSettings(), settingsDemo:false, forms: [], demoSeeded: !!demoSeeded };
+}
+var state = null;
+
+function sanitizeSettings(raw){
+  var s = blankSettings();
+  if(!raw || typeof raw!=='object') return s;
+  ['businessName','contactName','address','phone','email','payInstructions'].forEach(function(k){
+    if(typeof raw[k]==='string') s[k] = raw[k].slice(0,500);
+  });
+  s.defaultRent = num(raw.defaultRent);
+  s.defaultLateFee = num(raw.defaultLateFee);
+  s.defaultDueDay = Math.min(28, Math.max(1, intnum(raw.defaultDueDay) || 1));
+  s.defaultGraceDays = Math.min(60, intnum(raw.defaultGraceDays));
+  s.depositDays = Math.min(365, Math.max(1, intnum(raw.depositDays) || 30));
+  return s;
+}
+
+/* ---------------- form definitions ----------------
+   Field types: text, money, date, number, select, textarea.
+   Lists (dynamic rows) are handled per-type, not by schema. */
+var FORM_TYPES = {
+  receipt: {
+    label:'Rent Receipt', icon:'🧾',
+    blurb:'Proof of payment with the balance after — hand it over or text a photo.',
+    fields:[
+      {k:'date', label:'Date received', type:'date'},
+      {k:'tenant', label:'Received from (tenant)', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'periodFrom', label:'Rent period from', type:'date'},
+      {k:'periodTo', label:'Rent period to', type:'date'},
+      {k:'prevBalance', label:'Previous balance due ($)', type:'money'},
+      {k:'rentDue', label:'Rent due this period ($)', type:'money'},
+      {k:'amountReceived', label:'Amount received ($)', type:'money'},
+      {k:'method', label:'Payment method', type:'select', options:PAY_METHODS},
+      {k:'receivedBy', label:'Received by', type:'text'},
+      {k:'notes', label:'Notes', type:'textarea'}
+    ]
+  },
+  late: {
+    label:'Late Rent Notice', icon:'⏰',
+    blurb:'A past-due notice in a friendly or firm tone — your words, your numbers.',
+    fields:[
+      {k:'date', label:'Notice date', type:'date'},
+      {k:'tenant', label:'Tenant', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'tone', label:'Tone', type:'select', options:['Friendly','Firm']},
+      {k:'dueDate', label:'Rent was due', type:'date'},
+      {k:'daysLate', label:'Days past due', type:'number'},
+      {k:'rentDue', label:'Rent past due ($)', type:'money'},
+      {k:'lateFee', label:'Late fee ($)', type:'money'},
+      {k:'otherCharges', label:'Other charges ($)', type:'money'},
+      {k:'otherLabel', label:'Other charges — description', type:'text'},
+      {k:'payByDate', label:'Please pay by', type:'date'},
+      {k:'contactPhone', label:'Landlord phone (shown on notice)', type:'text'},
+      {k:'notes', label:'Additional note', type:'textarea'}
+    ]
+  },
+  renewal: {
+    label:'Lease Renewal Letter', icon:'🔁',
+    blurb:'Offer the new term and rent, with a clear reply-by date.',
+    fields:[
+      {k:'date', label:'Letter date', type:'date'},
+      {k:'tenant', label:'Tenant', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'currentLeaseEnd', label:'Current lease ends', type:'date'},
+      {k:'currentRent', label:'Current rent ($/mo)', type:'money'},
+      {k:'newRent', label:'New rent ($/mo)', type:'money'},
+      {k:'termType', label:'New term', type:'select', options:['Fixed term','Month-to-month']},
+      {k:'newTermStart', label:'New term starts', type:'date'},
+      {k:'newTermEnd', label:'New term ends (fixed term)', type:'date'},
+      {k:'responseBy', label:'Please respond by', type:'date'},
+      {k:'changes', label:'Other changes to the lease', type:'textarea'},
+      {k:'notes', label:'Friendly closing note', type:'textarea'}
+    ]
+  },
+  checklist: {
+    label:'Move-In / Move-Out Checklist', icon:'🔑',
+    blurb:'Room-by-room condition record with meter readings and signatures.',
+    fields:[
+      {k:'kind', label:'Checklist type', type:'select', options:['Move-in','Move-out']},
+      {k:'date', label:'Walk-through date', type:'date'},
+      {k:'tenant', label:'Tenant', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'meterElectric', label:'Electric meter reading', type:'text'},
+      {k:'meterGas', label:'Gas meter reading', type:'text'},
+      {k:'meterWater', label:'Water meter reading', type:'text'},
+      {k:'keysCount', label:'Keys handed over / returned', type:'text'},
+      {k:'notes', label:'Overall notes', type:'textarea'}
+    ]
+  },
+  deposit: {
+    label:'Security Deposit Disposition', icon:'🏦',
+    blurb:'Itemized deductions and the amount returned or owed — with the state-deadline flag.',
+    fields:[
+      {k:'statementDate', label:'Statement date', type:'date'},
+      {k:'tenant', label:'Tenant', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'moveOutDate', label:'Move-out date', type:'date'},
+      {k:'depositHeld', label:'Security deposit held ($)', type:'money'},
+      {k:'interest', label:'Interest owed to tenant ($, if your state/lease requires)', type:'money'},
+      {k:'dueDate', label:'Statement / refund due date (your state deadline)', type:'date'},
+      {k:'forwarding', label:'Tenant forwarding address', type:'text'},
+      {k:'notes', label:'Notes', type:'textarea'}
+    ]
+  },
+  increase: {
+    label:'Rent Increase Notice', icon:'📈',
+    blurb:'Current rent, new rent, and the effective date — in writing, on the record.',
+    fields:[
+      {k:'date', label:'Notice date', type:'date'},
+      {k:'tenant', label:'Tenant', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'currentRent', label:'Current rent ($/mo)', type:'money'},
+      {k:'newRent', label:'New rent ($/mo)', type:'money'},
+      {k:'effectiveDate', label:'New rent takes effect', type:'date'},
+      {k:'notes', label:'Additional note', type:'textarea'}
+    ]
+  },
+  maintenance: {
+    label:'Maintenance Request', icon:'🔧',
+    blurb:'A tenant-facing request form — issue, urgency, and permission to enter.',
+    fields:[
+      {k:'date', label:'Date', type:'date'},
+      {k:'tenant', label:'Tenant name', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'phone', label:'Tenant phone', type:'text'},
+      {k:'category', label:'Category', type:'select', options:MAINT_CATS},
+      {k:'urgency', label:'Urgency', type:'select', options:['Routine','Urgent','Emergency']},
+      {k:'description', label:'Describe the problem', type:'textarea'},
+      {k:'entryPermission', label:'Permission to enter', type:'select', options:['Yes — enter to repair','Call me first','I will be home']},
+      {k:'bestTimes', label:'Best times / days', type:'text'}
+    ]
+  },
+  welcome: {
+    label:'Welcome Letter', icon:'👋',
+    blurb:'Everything a new tenant needs on day one — rent, rules, and who to call.',
+    fields:[
+      {k:'date', label:'Letter date', type:'date'},
+      {k:'tenant', label:'Tenant', type:'text'},
+      {k:'property', label:'Property / unit', type:'text'},
+      {k:'moveInDate', label:'Move-in date', type:'date'},
+      {k:'rent', label:'Monthly rent ($)', type:'money'},
+      {k:'dueDay', label:'Rent due day of month', type:'number'},
+      {k:'graceDays', label:'Grace period (days)', type:'number'},
+      {k:'lateFee', label:'Late fee ($)', type:'money'},
+      {k:'depositHeld', label:'Security deposit held ($)', type:'money'},
+      {k:'maintenancePhone', label:'Maintenance / emergency phone', type:'text'},
+      {k:'trashDay', label:'Trash & recycling', type:'text'},
+      {k:'parking', label:'Parking', type:'text'},
+      {k:'quietHours', label:'Quiet hours', type:'text'},
+      {k:'utilitiesNote', label:'Utilities — who pays what', type:'textarea'},
+      {k:'notes', label:'Anything else', type:'textarea'}
+    ]
+  }
+};
+var FORM_ORDER = ['receipt','late','renewal','checklist','deposit','increase','maintenance','welcome'];
+
+function defaultData(type, settings){
+  var d = {};
+  FORM_TYPES[type].fields.forEach(function(f){
+    if(f.type==='money' || f.type==='number') d[f.k] = 0;
+    else if(f.type==='date') d[f.k] = '';
+    else if(f.type==='select') d[f.k] = f.options[0];
+    else d[f.k] = '';
+  });
+  var s = settings || blankSettings();
+  if(type==='receipt'){ d.date = todayISO(); d.rentDue = s.defaultRent; d.receivedBy = s.contactName || ''; }
+  if(type==='late'){ d.date = todayISO(); d.rentDue = s.defaultRent; d.lateFee = s.defaultLateFee; d.contactPhone = s.phone || ''; }
+  if(type==='renewal'){ d.date = todayISO(); d.currentRent = s.defaultRent; }
+  if(type==='checklist'){ d.date = todayISO(); d.rows = ROOM_DEFAULTS.map(function(r){ return {room:r, condition:'Good', notes:''}; }); }
+  if(type==='deposit'){ d.statementDate = todayISO(); d.deductions = [{desc:'', amount:0}]; }
+  if(type==='increase'){ d.date = todayISO(); d.currentRent = s.defaultRent; }
+  if(type==='maintenance'){ d.date = todayISO(); }
+  if(type==='welcome'){
+    d.date = todayISO(); d.rent = s.defaultRent; d.lateFee = s.defaultLateFee;
+    d.dueDay = s.defaultDueDay; d.graceDays = s.defaultGraceDays; d.maintenancePhone = s.phone || '';
+  }
+  return d;
+}
+
+/* ---------------- derived math ---------------- */
+function compute(type, d){
+  d = d || {};
+  if(type==='receipt'){
+    var totalDue = num(d.prevBalance) + num(d.rentDue);
+    var bal = totalDue - num(d.amountReceived);
+    return { totalDue: totalDue, balanceAfter: Math.max(0, bal), credit: Math.max(0, -bal) };
+  }
+  if(type==='late'){
+    return { totalDue: num(d.rentDue) + num(d.lateFee) + num(d.otherCharges) };
+  }
+  if(type==='deposit'){
+    var tot = 0;
+    (d.deductions||[]).forEach(function(x){ tot += num(x && x.amount); });
+    var avail = num(d.depositHeld) + num(d.interest);
+    var net = avail - tot;
+    return { totalDeductions: Math.round(tot*100)/100, amountReturned: Math.max(0, Math.round(net*100)/100), amountOwed: Math.max(0, Math.round(-net*100)/100) };
+  }
+  if(type==='increase' || type==='renewal'){
+    var cur = num(d.currentRent), nw = num(d.newRent);
+    var diff = Math.round((nw-cur)*100)/100;
+    return { diff: diff, pct: cur>0 ? Math.round((diff/cur)*10000)/100 : null };
+  }
+  if(type==='checklist'){
+    var counts = {Good:0, Fair:0, Poor:0, Damaged:0, 'N/A':0}, n = 0;
+    (d.rows||[]).forEach(function(r){ if(r && counts.hasOwnProperty(r.condition)){ counts[r.condition]++; n++; } });
+    return { rowCount: n, flagged: counts.Poor + counts.Damaged, counts: counts };
+  }
+  return {};
+}
+
+/* ---------------- sanitize ---------------- */
+function sanitizeForm(raw, settings){
+  if(!raw || typeof raw!=='object' || !FORM_TYPES[raw.type]) return null;
+  var type = raw.type;
+  var d = defaultData(type, settings);
+  var src = (raw.data && typeof raw.data==='object') ? raw.data : {};
+  FORM_TYPES[type].fields.forEach(function(f){
+    var v = src[f.k];
+    if(v===undefined || v===null) return;
+    if(f.type==='money') d[f.k] = num(v);
+    else if(f.type==='number') d[f.k] = Math.min(999999, intnum(v));
+    else if(f.type==='date') d[f.k] = validDate(String(v));
+    else if(f.type==='select') d[f.k] = (f.options.indexOf(v)>=0) ? v : f.options[0];
+    else d[f.k] = String(v).slice(0, 2000);
+  });
+  if(type==='deposit'){
+    d.deductions = [];
+    if(Array.isArray(src.deductions)){
+      src.deductions.slice(0, 100).forEach(function(x){
+        if(x && typeof x==='object') d.deductions.push({ desc: String(x.desc||'').slice(0,300), amount: num(x.amount) });
+      });
+    }
+    if(!d.deductions.length) d.deductions = [{desc:'', amount:0}];
+  }
+  if(type==='checklist'){
+    d.rows = [];
+    if(Array.isArray(src.rows)){
+      src.rows.slice(0, 100).forEach(function(x){
+        if(x && typeof x==='object') d.rows.push({
+          room: String(x.room||'').slice(0,120),
+          condition: (CONDITIONS.indexOf(x.condition)>=0) ? x.condition : 'Good',
+          notes: String(x.notes||'').slice(0,500)
+        });
+      });
+    }
+    if(!d.rows.length) d.rows = ROOM_DEFAULTS.map(function(r){ return {room:r, condition:'Good', notes:''}; });
+  }
+  return {
+    id: (typeof raw.id==='string' && raw.id) ? raw.id : uid(),
+    type: type,
+    createdAt: (typeof raw.createdAt==='string') ? raw.createdAt : todayISO(),
+    updatedAt: (typeof raw.updatedAt==='string') ? raw.updatedAt : todayISO(),
+    demo: !!raw.demo,
+    data: d
+  };
+}
+function sanitizeState(raw){
+  var st = blankState(false);
+  if(!raw || typeof raw!=='object') return st;
+  st.settings = sanitizeSettings(raw.settings);
+  st.settingsDemo = !!raw.settingsDemo;
+  st.demoSeeded = !!raw.demoSeeded;
+  st.forms = [];
+  if(Array.isArray(raw.forms)){
+    raw.forms.slice(0, 2000).forEach(function(f){ var sf = sanitizeForm(f, st.settings); if(sf) st.forms.push(sf); });
+  }
+  st.legal = (raw.legal && typeof raw.legal==='object') ? {termsVersion:String(raw.legal.termsVersion||''), acceptedDate:String(raw.legal.acceptedDate||''), disclaimerShown:!!raw.legal.disclaimerShown} : null;
+  return st;
+}
+
+/* ---------------- persistence ---------------- */
+function save(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){ /* storage full/blocked — app keeps running in memory */ }
+}
+function load(){
+  var raw = null;
+  try{ raw = localStorage.getItem(LS_KEY); }catch(e){ raw = null; }
+  if(raw===null || raw===undefined){
+    state = blankState(false);
+    seedDemo();
+    save();
+    return;
+  }
+  try{
+    state = sanitizeState(JSON.parse(raw));
+  }catch(e){
+    try{ localStorage.setItem(LS_KEY + '_corrupt_backup', raw); }catch(e2){}
+    state = blankState(true);
+  }
+}
+
+/* ---------------- demo data ---------------- */
+function seedDemo(){
+  var s = state.settings;
+  s.businessName = 'Maple Court Properties';
+  s.contactName = 'Dana Whitfield';
+  s.address = '812 S Main St, Millbrook, OK 74000';
+  s.phone = '(918) 555-0147';
+  s.email = 'dana@maplecourt.example';
+  s.defaultRent = 950; s.defaultLateFee = 50; s.defaultDueDay = 1; s.defaultGraceDays = 5;
+  s.depositDays = 30;
+  s.payInstructions = 'Make checks payable to Maple Court Properties, or use bank transfer.';
+  state.settingsDemo = true;
+
+  var prop = '412 Maple St, Unit B', tenant = 'Marcus Reed';
+  var receipt = sanitizeForm({ id:'demo-receipt', type:'receipt', demo:true, createdAt:'2026-10-05', updatedAt:'2026-10-05', data:{
+    date:'2026-10-05', tenant:tenant, property:prop, periodFrom:'2026-10-01', periodTo:'2026-10-31',
+    prevBalance:0, rentDue:950, amountReceived:950, method:'Bank transfer', receivedBy:'Dana Whitfield', notes:'Paid in full — thank you.'
+  }}, state.settings);
+  var deposit = sanitizeForm({ id:'demo-deposit', type:'deposit', demo:true, createdAt:'2026-09-18', updatedAt:'2026-09-18', data:{
+    statementDate:'2026-09-18', tenant:'Priya Nair', property:'412 Maple St, Unit A', moveOutDate:'2026-08-31',
+    depositHeld:950, interest:0, dueDate:'2026-09-30', forwarding:'PO Box 118, Millbrook, OK 74000',
+    notes:'Unit left in good shape overall; deductions below are for cleaning and repairs only.',
+    deductions:[
+      {desc:'Professional cleaning (kitchen & bath deep clean)', amount:150},
+      {desc:'Carpet repair — living room burn mark', amount:275},
+      {desc:'Unpaid rent — final partial month (August)', amount:450}
+    ]
+  }}, state.settings);
+  var welcome = sanitizeForm({ id:'demo-welcome', type:'welcome', demo:true, createdAt:'2026-08-01', updatedAt:'2026-08-01', data:{
+    date:'2026-08-01', tenant:tenant, property:prop, moveInDate:'2026-08-01',
+    rent:950, dueDay:1, graceDays:5, lateFee:50, depositHeld:950,
+    maintenancePhone:'(918) 555-0147', trashDay:'Tuesday pickup — bins at the curb by 7 AM',
+    parking:'Driveway, Unit B side', quietHours:'10 PM – 7 AM',
+    utilitiesNote:'Tenant pays electric and gas. Landlord covers water, trash, and lawn care.',
+    notes:'We are glad you are here. Do not hesitate to reach out with questions.'
+  }}, state.settings);
+  state.forms = [receipt, deposit, welcome];
+  state.demoSeeded = true;
+}
+function clearDemo(){
+  state.forms = state.forms.filter(function(f){ return !f.demo; });
+  if(state.settingsDemo){ state.settings = blankSettings(); state.settingsDemo = false; }
+  /* demoSeeded stays true on purpose — cleared sample data must never resurrect on reload. */
+  save();
+}
+
+/* ---------------- UI state ---------------- */
+var ui = { tab:'forms', libQuery:'' };
+var editing = null; /* {id:null|string, type, data} */
+
+var TABS = [
+  {id:'forms', label:'📝 Forms'},
+  {id:'library', label:'🗂️ Library'},
+  {id:'settings', label:'⚙️ Settings'},
+  {id:'help', label:'❓ Help'}
+];
+function renderTabs(){
+  document.getElementById('tabs').innerHTML = TABS.map(function(t){
+    return '<button data-tab="' + t.id + '"' + (ui.tab===t.id ? ' class="active"' : '') + '>' + t.label + '</button>';
+  }).join('');
+}
+function render(){
+  renderTabs();
+  var m = document.getElementById('main');
+  if(ui.tab==='forms') m.innerHTML = formsHTML();
+  else if(ui.tab==='library') m.innerHTML = libraryHTML();
+  else if(ui.tab==='settings') m.innerHTML = settingsHTML();
+  else m.innerHTML = helpHTML();
+}
+
+/* ---------------- Forms tab ---------------- */
+function formsHTML(){
+  if(editing) return editorHTML();
+  var h = '<h2 class="view-title">Pick a form</h2>';
+  h += '<div class="disc-banner">✍️ Fill in the blanks, print or save as PDF, done. Your business info from <b>Settings</b> is printed on every form automatically. <b>These are templates, not legal advice</b> — landlord–tenant law varies by state; check yours.</div>';
+  h += '<div class="grid tpl">';
+  FORM_ORDER.forEach(function(t){
+    var ft = FORM_TYPES[t];
+    h += '<button class="tpl-card" data-act="new" data-type="' + t + '"><div class="ic">' + ft.icon + '</div><div class="nm">' + ft.label + '</div><div class="ds">' + ft.blurb + '</div></button>';
+  });
+  h += '</div>';
+  if(state.forms.some(function(f){ return f.demo; }) || state.settingsDemo){
+    h += '<div class="card" style="margin-top:12px"><b>Sample data is loaded</b> — a sample landlord and three finished forms (in the Library) so you can see exactly what prints. <button class="btn ghost small" data-act="clearDemo" style="margin-left:8px">Clear sample data</button></div>';
+  }
+  return h;
+}
+function fieldHTML(f, val){
+  var id = 'fld-' + f.k;
+  var v = (val===undefined || val===null) ? '' : val;
+  var inner;
+  if(f.type==='select'){
+    inner = '<select id="' + id + '" data-k="' + f.k + '">' + f.options.map(function(o){
+      return '<option value="' + esc(o) + '"' + (o===v ? ' selected' : '') + '>' + esc(o) + '</option>';
+    }).join('') + '</select>';
+  } else if(f.type==='textarea'){
+    inner = '<textarea id="' + id + '" data-k="' + f.k + '">' + esc(v) + '</textarea>';
+  } else if(f.type==='date'){
+    inner = '<input id="' + id + '" data-k="' + f.k + '" type="date" value="' + esc(v) + '">';
+  } else if(f.type==='money'){
+    inner = '<input id="' + id + '" data-k="' + f.k + '" type="text" inputmode="decimal" value="' + (v===0 ? '' : esc(v)) + '" placeholder="0.00">';
+  } else if(f.type==='number'){
+    inner = '<input id="' + id + '" data-k="' + f.k + '" type="text" inputmode="numeric" value="' + (v===0 ? '' : esc(v)) + '" placeholder="0">';
+  } else {
+    inner = '<input id="' + id + '" data-k="' + f.k + '" type="text" value="' + esc(v) + '">';
+  }
+  var flex = (f.type==='textarea') ? ' style="flex:1 1 100%"' : '';
+  return '<div' + flex + '><label for="' + id + '">' + esc(f.label) + '</label>' + inner + '</div>';
+}
+function deductionsHTML(d){
+  var h = '<h3>Deductions (itemized)</h3>';
+  d.deductions.forEach(function(x, i){
+    h += '<div class="row" style="align-items:flex-end">'
+      + '<div style="flex:2 1 220px"><label>Deduction</label><input type="text" data-list="deductions" data-i="' + i + '" data-f="desc" value="' + esc(x.desc) + '" placeholder="e.g. Professional cleaning"></div>'
+      + '<div><label>Amount ($)</label><input type="text" inputmode="decimal" data-list="deductions" data-i="' + i + '" data-f="amount" value="' + (x.amount===0 ? '' : esc(x.amount)) + '" placeholder="0.00"></div>'
+      + '<div style="flex:0 0 auto"><button class="del" data-act="delrow" data-list="deductions" data-i="' + i + '" title="Remove deduction">✕</button></div>'
+      + '</div>';
+  });
+  h += '<button class="btn ghost small" data-act="addded" style="margin-top:8px">+ Add deduction</button>';
+  return h;
+}
+function rowsHTML(d){
+  var h = '<h3>Rooms &amp; areas</h3>';
+  d.rows.forEach(function(r, i){
+    h += '<div class="row" style="align-items:flex-end">'
+      + '<div><label>Room / area</label><input type="text" data-list="rows" data-i="' + i + '" data-f="room" value="' + esc(r.room) + '"></div>'
+      + '<div><label>Condition</label><select data-list="rows" data-i="' + i + '" data-f="condition">' + CONDITIONS.map(function(c){
+          return '<option value="' + c + '"' + (c===r.condition ? ' selected' : '') + '>' + c + '</option>';
+        }).join('') + '</select></div>'
+      + '<div style="flex:2 1 200px"><label>Notes (marks, wear, photos taken)</label><input type="text" data-list="rows" data-i="' + i + '" data-f="notes" value="' + esc(r.notes) + '"></div>'
+      + '<div style="flex:0 0 auto"><button class="del" data-act="delrow" data-list="rows" data-i="' + i + '" title="Remove row">✕</button></div>'
+      + '</div>';
+  });
+  h += '<button class="btn ghost small" data-act="addrow" style="margin-top:8px">+ Add room / area</button>';
+  return h;
+}
+function derivedHTML(type, d){
+  var c = compute(type, d);
+  var h = '';
+  if(type==='receipt'){
+    h = 'Total due: <span class="amt">' + fmt(c.totalDue) + '</span> · Balance after this payment: <span class="amt">' + fmt(c.balanceAfter) + '</span>'
+      + (c.credit>0 ? ' · <span class="good">Credit balance ' + fmt(c.credit) + '</span>' : '');
+  } else if(type==='late'){
+    h = 'Total now due: <span class="amt">' + fmt(c.totalDue) + '</span>';
+  } else if(type==='deposit'){
+    h = 'Total deductions: <span class="amt">' + fmt(c.totalDeductions) + '</span> · '
+      + (c.amountOwed>0 ? '<span class="bad">Tenant owes ' + fmt(c.amountOwed) + ' beyond the deposit</span>' : 'Amount to return to tenant: <span class="amt">' + fmt(c.amountReturned) + '</span>');
+  } else if(type==='increase' || type==='renewal'){
+    h = 'Change: <span class="amt">' + (c.diff>0 ? '+' : '') + fmt(c.diff) + '/mo</span>' + (c.pct!==null ? ' (' + (c.diff>0 ? '+' : '') + c.pct + '%)' : '');
+  } else if(type==='checklist'){
+    h = c.rowCount + ' areas recorded · <span class="amt">' + c.flagged + ' flagged Poor/Damaged</span>';
+  }
+  return h ? '<div class="derived" id="derived">' + h + '</div>' : '<div id="derived"></div>';
+}
+function editorHTML(){
+  var ft = FORM_TYPES[editing.type];
+  var d = editing.data;
+  var h = '<h2 class="view-title">' + ft.icon + ' ' + ft.label + (editing.id ? ' — editing' : ' — new') + '</h2>';
+  h += '<div class="card"><div class="row">';
+  ft.fields.forEach(function(f){ h += fieldHTML(f, d[f.k]); });
+  h += '</div>';
+  if(editing.type==='deposit'){
+    h += deductionsHTML(d);
+    h += '<div class="flagbox">⚠️ <b>State deadline:</b> most states require this statement — and any refund — within a fixed number of days after move-out or lease end (commonly 14–45 days; your Settings default is ' + state.settings.depositDays + ' days). <b>The deadline varies by state and missing it can forfeit your right to keep deductions.</b> Confirm your state’s rule and set the due-date field above accordingly.</div>';
+  }
+  if(editing.type==='checklist') h += rowsHTML(d);
+  h += derivedHTML(editing.type, d);
+  h += '<div class="row" style="margin-top:14px">'
+    + '<div style="flex:0 0 auto"><button class="btn amber" data-act="save">💾 Save to Library</button></div>'
+    + '<div style="flex:0 0 auto"><button class="btn" data-act="print">🖨️ Print / Save PDF</button></div>'
+    + '<div style="flex:0 0 auto"><button class="btn ghost" data-act="cancel">Back to forms</button></div>'
+    + '</div>';
+  h += '<p class="small mut" style="margin-top:10px">' + esc(DISCLAIMER) + '</p>';
+  h += '</div>';
+  return h;
+}
+
+/* ---------------- Library tab ---------------- */
+function formTitle(f){
+  var d = f.data;
+  var when = d.date || d.statementDate || f.createdAt;
+  return FORM_TYPES[f.type].label + ' — ' + (d.tenant || 'No tenant') + (d.property ? ' · ' + d.property : '') + (when ? ' · ' + fmtDate(when) : '');
+}
+function formMatches(f, q){
+  if(!q) return true;
+  var hay = (formTitle(f) + ' ' + f.type + ' ' + FORM_TYPES[f.type].label + ' ' + (f.data.tenant||'') + ' ' + (f.data.property||'')).toLowerCase();
+  return hay.indexOf(q.toLowerCase())>=0;
+}
+function libListHTML(){
+  var list = state.forms.filter(function(f){ return formMatches(f, ui.libQuery); });
+  if(!state.forms.length) return '<div class="empty">No saved forms yet. Fill one in from the Forms tab and tap “Save to Library.”</div>';
+  if(!list.length) return '<div class="empty">No forms match your search.</div>';
+  return list.map(function(f){
+    return '<div class="card"><div class="lib-item"><div><b>' + esc(formTitle(f)) + '</b>'
+      + '<div class="meta">' + FORM_TYPES[f.type].icon + ' ' + FORM_TYPES[f.type].label + (f.demo ? ' · <span class="pill amber">Sample</span>' : '') + ' · saved ' + esc(fmtDate(f.updatedAt)) + '</div></div>'
+      + '<div class="lib-actions">'
+      + '<button class="btn small" data-act="open" data-id="' + f.id + '">Open</button>'
+      + '<button class="btn ghost small" data-act="printlib" data-id="' + f.id + '">Print</button>'
+      + '<button class="btn ghost small" data-act="dup" data-id="' + f.id + '">Duplicate</button>'
+      + '<button class="btn ghost small" data-act="del" data-id="' + f.id + '">Delete</button>'
+      + '</div></div></div>';
+  }).join('');
+}
+function libraryHTML(){
+  return '<h2 class="view-title">Saved forms</h2>'
+    + '<div class="card"><label for="libSearch">Search by tenant, property, or form type</label>'
+    + '<input id="libSearch" data-search="1" type="text" value="' + esc(ui.libQuery) + '" placeholder="e.g. Marcus, Maple, deposit…"></div>'
+    + '<div id="libList">' + libListHTML() + '</div>';
+}
+
+/* ---------------- Settings tab ---------------- */
+function settingsHTMLorig(){
+  var s = state.settings;
+  function sf(k, label, val, type, ph){
+    return '<div><label>' + label + '</label><input data-s="' + k + '" type="' + (type||'text') + '" value="' + esc(val) + '"' + (ph ? ' placeholder="' + esc(ph) + '"' : '') + '></div>';
+  }
+  var h = '<h2 class="view-title">Settings</h2><div class="card"><h3 style="margin-top:0">Your business info — printed on every form</h3><div class="row">'
+    + sf('businessName','Business name', s.businessName, 'text', 'e.g. Maple Court Properties')
+    + sf('contactName','Your name', s.contactName)
+    + '<div style="flex:1 1 100%"><label>Mailing address</label><input data-s="address" type="text" value="' + esc(s.address) + '"></div>'
+    + sf('phone','Phone', s.phone)
+    + sf('email','Email', s.email)
+    + '</div></div>';
+  h += '<div class="card"><h3 style="margin-top:0">Defaults — pre-filled into new forms (change them per form anytime)</h3><div class="row">'
+    + sf('defaultRent','Typical monthly rent ($)', s.defaultRent===0 ? '' : s.defaultRent, 'text', '0.00')
+    + sf('defaultLateFee','Typical late fee ($)', s.defaultLateFee===0 ? '' : s.defaultLateFee, 'text', '0.00')
+    + sf('defaultDueDay','Rent due day of month', s.defaultDueDay)
+    + sf('defaultGraceDays','Grace period (days)', s.defaultGraceDays)
+    + sf('depositDays','My state’s deposit-statement deadline (days)', s.depositDays)
+    + '<div style="flex:1 1 100%"><label>Payment instructions (printed on receipts)</label><textarea data-s="payInstructions">' + esc(s.payInstructions) + '</textarea></div>'
+    + '</div><button class="btn amber" data-act="saveSettings" style="margin-top:12px">💾 Save settings</button></div>';
+  h += '<div class="card"><h3 style="margin-top:0">Backup — export / import</h3>'
+    + '<p class="small mut">Your forms and settings live only in this browser. Export a backup file regularly; import it on a new device to restore everything. <b>Note:</b> this backup belongs to the Forms Pack only — it is not a RentLedger file and will not import into RentLedger (or the other way around).</p>'
+    + '<div class="row"><div style="flex:0 0 auto"><button class="btn" data-act="doExport">⬇️ Download backup</button></div>'
+    + '<div style="flex:0 0 auto"><button class="btn ghost" data-act="showImport">⬆️ Import backup…</button></div></div>'
+    + '<div id="importBox" style="display:none; margin-top:10px"><label>Choose a backup file, or paste its contents</label>'
+    + '<input type="file" id="importFile" accept=".json,application/json">'
+    + '<textarea id="importText" placeholder="Paste backup JSON here" style="margin-top:8px"></textarea>'
+    + '<button class="btn amber" data-act="doImport" style="margin-top:8px">Import this backup</button></div></div>';
+  h += '<div class="card"><h3 style="margin-top:0">Danger zone</h3>'
+    + '<div class="row"><div style="flex:0 0 auto"><button class="btn ghost" data-act="clearDemo">Clear sample data</button></div>'
+    + '<div style="flex:0 0 auto"><button class="btn danger" data-act="eraseAll">Erase everything</button></div></div></div>';
+  return h;
+}
+function settingsHTML(){ return settingsHTMLorig() + '<div class="card"><h3 style="margin-top:0">Legal</h3><p>Terms of Use, the applicable disclaimer, our privacy statement, and your recorded acceptance.</p><button type="button" class="btn ww-legal-open-btn" data-act="wwLegal" data-ww-legal="1">⚖️ Legal — Terms, Disclaimer &amp; Privacy</button></div>'; }
+
+
+/* ---------------- Help tab ---------------- */
+function helpHTML(){
+  return '<h2 class="view-title">Help</h2><div class="card help-sec">'
+  + '<h3 style="margin-top:0">What this is</h3>'
+  + '<p>The <b>Landlord Forms Pack</b> is the paperwork companion to <b>RentLedger</b>. RentLedger tracks the money — charges, payments, arrears. This pack makes the paper: receipts, notices, checklists, and letters. Fill in a form, print it (or save it as a PDF from the print dialog), and save a copy to your Library so next month’s version takes thirty seconds.</p>'
+  + '<h3>How a form flows</h3><ul>'
+  + '<li><b>Forms tab:</b> pick one of the eight forms and fill it in. Totals — balances, deposit math, rent changes — figure themselves as you type.</li>'
+  + '<li><b>Save to Library:</b> keeps the filled form so you can reopen, duplicate, or reprint it later. Duplicate is the fast path for monthly receipts.</li>'
+  + '<li><b>Print:</b> your business name, address, and phone from Settings print at the top of every form automatically.</li></ul>'
+  + '<h3>The eight forms</h3><ul>'
+  + '<li><b>Rent Receipt</b> — amount received, what it covered, and the balance still owed afterward.</li>'
+  + '<li><b>Late Rent Notice</b> — pick Friendly (a nudge) or Firm (a formal demand); the total adds rent + late fee + any other charges.</li>'
+  + '<li><b>Lease Renewal Letter</b> — new term, new rent, and a reply-by date.</li>'
+  + '<li><b>Move-In / Move-Out Checklist</b> — room-by-room condition, meter readings, key count, and signature lines for both parties. Do one at move-in AND move-out; the pair is your deposit evidence.</li>'
+  + '<li><b>Security Deposit Disposition</b> — itemized deductions against the deposit; the app figures the refund or the amount still owed.</li>'
+  + '<li><b>Rent Increase Notice</b> — the increase in writing, with the dollar and percent change figured for you.</li>'
+  + '<li><b>Maintenance Request</b> — a tenant-facing form: the problem, urgency, and permission to enter.</li>'
+  + '<li><b>Welcome Letter</b> — day-one facts for a new tenant: rent, due day, late fee, trash, parking, quiet hours, and who to call.</li></ul>'
+  + '<h3>⚠️ Read this — the law part</h3>'
+  + '<p>' + esc(DISCLAIMER) + '</p>'
+  + '<p>The sharpest edge is the <b>security-deposit deadline</b>: most states give you a fixed number of days after move-out to send the disposition statement and refund, and missing it can cost you the right to keep any deductions — sometimes more. Set your state’s number in Settings so the deposit form reminds you, and double-check it against your state’s current law. Notice periods for rent increases and late fees caps also vary — the numbers in these templates are yours to set, and yours to verify.</p>'
+  + '<h3>Your data</h3>'
+  + '<p>Everything is stored only in this browser on this device — nothing is uploaded, ever. Export a backup from Settings before switching devices or clearing browser data; without a backup, cleared data cannot be recovered.</p>'
+  + '<h3>Defaults are starting points</h3>'
+  + '<p>The rent, late-fee, and deadline defaults in Settings are conveniences, not recommendations. Set them to match your leases and your state, then adjust per form whenever a situation differs.</p>'
+  + '</div>';
+}
+
+/* ---------------- print ---------------- */
+function letterheadHTML(){
+  var s = state.settings;
+  var name = s.businessName || s.contactName || 'Landlord';
+  var sub = [];
+  if(s.businessName && s.contactName) sub.push(esc(s.contactName));
+  if(s.address) sub.push(esc(s.address));
+  if(s.phone) sub.push(esc(s.phone));
+  if(s.email) sub.push(esc(s.email));
+  return '<div class="lh"><div class="lhname">' + esc(name) + '</div>' + (sub.length ? '<div class="lhsub">' + sub.join(' · ') + '</div>' : '') + '</div>';
+}
+function kvTable(pairs){
+  var rows = pairs.filter(function(p){ return p[1] !== '' && p[1] !== '—' && p[1] !== null && p[1] !== undefined; });
+  if(!rows.length) return '';
+  return '<table>' + rows.map(function(p){ return '<tr><td style="width:38%; color:#555">' + esc(p[0]) + '</td><td>' + p[1] + '</td></tr>'; }).join('') + '</table>';
+}
+function sigHTML(labels){
+  return '<div class="sig">' + labels.map(function(l){ return '<div>' + esc(l) + '</div>'; }).join('') + '</div>';
+}
+function discHTML(){
+  return '<div class="disc">' + esc(DISCLAIMER) + '</div>';
+}
+function printHTML(type, d){
+  var c = compute(type, d);
+  var h = letterheadHTML();
+  if(type==='receipt'){
+    h += '<h1>Rent Receipt</h1>'
+      + kvTable([['Received from', esc(d.tenant)],['Property / unit', esc(d.property)],['Date received', fmtDate(d.date)],
+                 ['Rent period', fmtDate(d.periodFrom) + ' – ' + fmtDate(d.periodTo)],['Payment method', esc(d.method)],['Received by', esc(d.receivedBy)]])
+      + '<h2>Amounts</h2><table>'
+      + '<tr><td>Previous balance due</td><td class="num">' + fmt(d.prevBalance) + '</td></tr>'
+      + '<tr><td>Rent due this period</td><td class="num">' + fmt(d.rentDue) + '</td></tr>'
+      + '<tr><td>Total due</td><td class="num">' + fmt(c.totalDue) + '</td></tr>'
+      + '<tr><td>Amount received</td><td class="num">' + fmt(d.amountReceived) + '</td></tr>'
+      + '<tr class="tot"><td>' + (c.credit>0 ? 'Credit balance' : 'Balance after this payment') + '</td><td class="num">' + fmt(c.credit>0 ? c.credit : c.balanceAfter) + '</td></tr></table>'
+      + (d.notes ? '<p><b>Notes:</b> ' + esc(d.notes) + '</p>' : '')
+      + (state.settings.payInstructions ? '<p>' + esc(state.settings.payInstructions) + '</p>' : '')
+      + sigHTML(['Received by — signature / date']);
+  }
+  else if(type==='late'){
+    var firm = d.tone==='Firm';
+    h += '<h1>Late Rent Notice</h1><p>' + fmtDate(d.date) + '</p><p>Dear ' + esc(d.tenant || 'Tenant') + ',</p>'
+      + (firm
+        ? '<p>This notice is to inform you that rent for <b>' + esc(d.property) + '</b> was due on <b>' + fmtDate(d.dueDate) + '</b> and remains unpaid' + (d.daysLate ? ' — <b>' + esc(d.daysLate) + ' days past due</b>' : '') + '. Our records show the following balance:</p>'
+        : '<p>This is a friendly reminder that rent for <b>' + esc(d.property) + '</b> was due on <b>' + fmtDate(d.dueDate) + '</b> and, as of today, has not been received. Here is the balance as it stands:</p>')
+      + '<table>'
+      + '<tr><td>Rent past due</td><td class="num">' + fmt(d.rentDue) + '</td></tr>'
+      + '<tr><td>Late fee</td><td class="num">' + fmt(d.lateFee) + '</td></tr>'
+      + (num(d.otherCharges)>0 ? '<tr><td>' + esc(d.otherLabel || 'Other charges') + '</td><td class="num">' + fmt(d.otherCharges) + '</td></tr>' : '')
+      + '<tr class="tot"><td>Total now due</td><td class="num">' + fmt(c.totalDue) + '</td></tr></table>'
+      + '<p>Please arrange payment of <b>' + fmt(c.totalDue) + '</b> by <b>' + fmtDate(d.payByDate) + '</b>.'
+      + (d.contactPhone ? ' If you have already paid, or if something has come up, please call ' + esc(d.contactPhone) + ' so we can sort it out.' : '') + '</p>'
+      + (firm ? '<p>If payment is not received by the date above, we may pursue the remedies available under the lease and applicable law.</p>' : '<p>Thank you for taking care of this promptly.</p>')
+      + (d.notes ? '<p>' + esc(d.notes) + '</p>' : '')
+      + sigHTML(['Landlord / manager — signature / date']);
+  }
+  else if(type==='renewal'){
+    h += '<h1>Lease Renewal Offer</h1><p>' + fmtDate(d.date) + '</p><p>Dear ' + esc(d.tenant || 'Tenant') + ',</p>'
+      + '<p>Your current lease for <b>' + esc(d.property) + '</b> ends on <b>' + fmtDate(d.currentLeaseEnd) + '</b>. We are pleased to offer a renewal on the terms below:</p>'
+      + '<table>'
+      + '<tr><td style="width:38%; color:#555">Current rent</td><td>' + fmt(d.currentRent) + ' / month</td></tr>'
+      + '<tr><td style="color:#555">New rent</td><td><b>' + fmt(d.newRent) + ' / month</b>' + (c.diff ? ' (' + (c.diff>0 ? '+' : '') + fmt(c.diff) + (c.pct!==null ? ', ' + (c.diff>0 ? '+' : '') + c.pct + '%' : '') + ')' : '') + '</td></tr>'
+      + '<tr><td style="color:#555">New term</td><td>' + esc(d.termType) + '</td></tr>'
+      + '<tr><td style="color:#555">Term starts</td><td>' + fmtDate(d.newTermStart) + '</td></tr>'
+      + (d.termType==='Fixed term' ? '<tr><td style="color:#555">Term ends</td><td>' + fmtDate(d.newTermEnd) + '</td></tr>' : '')
+      + '</table>'
+      + (d.changes ? '<h2>Other changes</h2><p>' + esc(d.changes) + '</p>' : '')
+      + '<p>Please let us know by <b>' + fmtDate(d.responseBy) + '</b> whether you would like to renew, so we can prepare the paperwork. If we do not hear from you by then, we will assume you plan to move out at the end of the current term and will begin scheduling showings as the lease allows.</p>'
+      + (d.notes ? '<p>' + esc(d.notes) + '</p>' : '')
+      + sigHTML(['Landlord / manager — signature / date','Tenant — signature / date (acceptance)']);
+  }
+  else if(type==='checklist'){
+    h += '<h1>' + esc(d.kind) + ' Condition Checklist</h1>'
+      + kvTable([['Tenant', esc(d.tenant)],['Property / unit', esc(d.property)],['Walk-through date', fmtDate(d.date)],
+                 ['Electric meter', esc(d.meterElectric)],['Gas meter', esc(d.meterGas)],['Water meter', esc(d.meterWater)],
+                 ['Keys', esc(d.keysCount)]])
+      + '<h2>Condition by area</h2><table><tr><th>Room / area</th><th>Condition</th><th>Notes</th></tr>'
+      + d.rows.map(function(r){ return '<tr><td>' + esc(r.room) + '</td><td>' + esc(r.condition) + '</td><td>' + esc(r.notes) + '</td></tr>'; }).join('')
+      + '</table>'
+      + (d.notes ? '<p><b>Overall notes:</b> ' + esc(d.notes) + '</p>' : '')
+      + '<p class="small">By signing, both parties agree this checklist reflects the condition of the property on the date above. Take dated photos alongside this form and keep them with it.</p>'
+      + sigHTML(['Tenant — signature / date','Landlord / manager — signature / date']);
+  }
+  else if(type==='deposit'){
+    h += '<h1>Security Deposit Disposition Statement</h1>'
+      + kvTable([['Tenant', esc(d.tenant)],['Property / unit', esc(d.property)],['Move-out date', fmtDate(d.moveOutDate)],
+                 ['Statement date', fmtDate(d.statementDate)],['Forwarding address', esc(d.forwarding)]])
+      + '<h2>Deductions</h2><table><tr><th>Item</th><th class="num">Amount</th></tr>'
+      + d.deductions.filter(function(x){ return x.desc || num(x.amount)>0; }).map(function(x){
+          return '<tr><td>' + esc(x.desc || 'Deduction') + '</td><td class="num">' + fmt(x.amount) + '</td></tr>';
+        }).join('')
+      + '<tr class="tot"><td>Total deductions</td><td class="num">' + fmt(c.totalDeductions) + '</td></tr></table>'
+      + '<h2>Settlement</h2><table>'
+      + '<tr><td>Security deposit held</td><td class="num">' + fmt(d.depositHeld) + '</td></tr>'
+      + (num(d.interest)>0 ? '<tr><td>Interest owed to tenant</td><td class="num">' + fmt(d.interest) + '</td></tr>' : '')
+      + '<tr><td>Less total deductions</td><td class="num">−' + fmt(c.totalDeductions) + '</td></tr>'
+      + (c.amountOwed>0
+          ? '<tr class="tot"><td>Amount still owed by tenant</td><td class="num">' + fmt(c.amountOwed) + '</td></tr>'
+          : '<tr class="tot"><td>Amount returned to tenant</td><td class="num">' + fmt(c.amountReturned) + '</td></tr>')
+      + '</table>'
+      + (d.dueDate ? '<div class="flagbox">⚠️ <b>Deadline:</b> this statement' + (c.amountOwed>0 ? '' : ' and any refund') + ' is due by <b>' + fmtDate(d.dueDate) + '</b>. Deposit deadlines are set by state law and vary — confirm yours; missing the deadline can forfeit the right to keep deductions.</div>' : '')
+      + (d.notes ? '<p><b>Notes:</b> ' + esc(d.notes) + '</p>' : '')
+      + sigHTML(['Landlord / manager — signature / date']);
+  }
+  else if(type==='increase'){
+    h += '<h1>Notice of Rent Increase</h1><p>' + fmtDate(d.date) + '</p><p>Dear ' + esc(d.tenant || 'Tenant') + ',</p>'
+      + '<p>This letter is written notice that the monthly rent for <b>' + esc(d.property) + '</b> will change as follows:</p>'
+      + '<table>'
+      + '<tr><td style="width:38%; color:#555">Current rent</td><td>' + fmt(d.currentRent) + ' / month</td></tr>'
+      + '<tr><td style="color:#555">New rent</td><td><b>' + fmt(d.newRent) + ' / month</b>' + (c.diff ? ' (' + (c.diff>0 ? '+' : '') + fmt(c.diff) + (c.pct!==null ? ', ' + (c.diff>0 ? '+' : '') + c.pct + '%' : '') + ')' : '') + '</td></tr>'
+      + '<tr><td style="color:#555">Effective date</td><td><b>' + fmtDate(d.effectiveDate) + '</b></td></tr></table>'
+      + '<p>All other terms of your lease remain unchanged. The first payment at the new rate is due on the effective date above.</p>'
+      + (d.notes ? '<p>' + esc(d.notes) + '</p>' : '')
+      + sigHTML(['Landlord / manager — signature / date']);
+  }
+  else if(type==='maintenance'){
+    h += '<h1>Maintenance Request</h1>'
+      + kvTable([['Tenant', esc(d.tenant)],['Property / unit', esc(d.property)],['Date', fmtDate(d.date)],['Tenant phone', esc(d.phone)],
+                 ['Category', esc(d.category)],['Urgency', esc(d.urgency)],['Permission to enter', esc(d.entryPermission)],['Best times', esc(d.bestTimes)]])
+      + '<h2>Problem description</h2><p>' + esc(d.description || '—') + '</p>'
+      + sigHTML(['Tenant — signature / date','Received by (landlord) — date']);
+  }
+  else if(type==='welcome'){
+    h += '<h1>Welcome to Your New Home</h1><p>' + fmtDate(d.date) + '</p><p>Dear ' + esc(d.tenant || 'Tenant') + ',</p>'
+      + '<p>Welcome to <b>' + esc(d.property) + '</b> — we are glad to have you. Here is everything you need for a smooth start:</p>'
+      + '<table>'
+      + '<tr><td style="width:38%; color:#555">Move-in date</td><td>' + fmtDate(d.moveInDate) + '</td></tr>'
+      + '<tr><td style="color:#555">Monthly rent</td><td><b>' + fmt(d.rent) + '</b>, due on day ' + esc(d.dueDay || 1) + ' of each month' + (d.graceDays ? ' (' + esc(d.graceDays) + '-day grace period; late fee ' + fmt(d.lateFee) + ' after that)' : '') + '</td></tr>'
+      + '<tr><td style="color:#555">Security deposit held</td><td>' + fmt(d.depositHeld) + '</td></tr>'
+      + (d.maintenancePhone ? '<tr><td style="color:#555">Maintenance / emergencies</td><td>' + esc(d.maintenancePhone) + '</td></tr>' : '')
+      + (d.trashDay ? '<tr><td style="color:#555">Trash &amp; recycling</td><td>' + esc(d.trashDay) + '</td></tr>' : '')
+      + (d.parking ? '<tr><td style="color:#555">Parking</td><td>' + esc(d.parking) + '</td></tr>' : '')
+      + (d.quietHours ? '<tr><td style="color:#555">Quiet hours</td><td>' + esc(d.quietHours) + '</td></tr>' : '')
+      + '</table>'
+      + (d.utilitiesNote ? '<h2>Utilities</h2><p>' + esc(d.utilitiesNote) + '</p>' : '')
+      + (state.settings.payInstructions ? '<h2>Paying rent</h2><p>' + esc(state.settings.payInstructions) + '</p>' : '')
+      + (d.notes ? '<p>' + esc(d.notes) + '</p>' : '')
+      + '<p>Please keep this letter with your lease. If anything in the home is not working as it should, use a Maintenance Request form or call us — small problems reported early stay small.</p>'
+      + sigHTML(['Landlord / manager — signature / date','Tenant — signature / date (acknowledgment)']);
+  }
+  return h + discHTML();
+}
+function doPrint(type, data){
+  document.getElementById('printArea').innerHTML = printHTML(type, data);
+  window.print();
+}
+
+/* ---------------- events ---------------- */
+function refreshDerived(){
+  if(!editing) return;
+  var el = document.getElementById('derived');
+  if(el) el.outerHTML = derivedHTML(editing.type, editing.data);
+}
+function findForm(id){ for(var i=0;i<state.forms.length;i++) if(state.forms[i].id===id) return state.forms[i]; return null; }
+
+function handleAct(act, el){
+  if(act==='new'){
+    editing = { id:null, type: el.getAttribute('data-type'), data: defaultData(el.getAttribute('data-type'), state.settings) };
+    render();
+  }
+  else if(act==='open'){
+    var f = findForm(el.getAttribute('data-id'));
+    if(f){ editing = { id:f.id, type:f.type, data: JSON.parse(JSON.stringify(f.data)) }; ui.tab='forms'; render(); }
+  }
+  else if(act==='dup'){
+    var of = findForm(el.getAttribute('data-id'));
+    if(of){
+      var copy = sanitizeForm({ type: of.type, data: JSON.parse(JSON.stringify(of.data)) }, state.settings);
+      state.forms.unshift(copy); save(); render(); toast('Form duplicated — it is at the top of the Library.');
+    }
+  }
+  else if(act==='del'){
+    var df = findForm(el.getAttribute('data-id'));
+    if(df && window.confirm('Delete this saved form? This cannot be undone.')){
+      state.forms = state.forms.filter(function(x){ return x.id!==df.id; });
+      if(editing && editing.id===df.id) editing = null;
+      save(); render(); toast('Form deleted.');
+    }
+  }
+  else if(act==='printlib'){
+    var pf = findForm(el.getAttribute('data-id'));
+    if(pf) doPrint(pf.type, pf.data);
+  }
+  else if(act==='save'){
+    if(!editing) return;
+    if(editing.id){
+      var ef = findForm(editing.id);
+      if(ef){ ef.data = editing.data; ef.updatedAt = todayISO(); ef.demo = false; }
+    } else {
+      state.forms.unshift({ id: uid(), type: editing.type, createdAt: todayISO(), updatedAt: todayISO(), demo:false, data: editing.data });
+      editing.id = state.forms[0].id;
+    }
+    save(); toast('Saved to your Library.'); render();
+  }
+  else if(act==='print'){ if(editing) doPrint(editing.type, editing.data); }
+  else if(act==='cancel'){ editing = null; render(); }
+  else if(act==='addded'){ if(editing){ editing.data.deductions.push({desc:'', amount:0}); render(); } }
+  else if(act==='addrow'){ if(editing){ editing.data.rows.push({room:'', condition:'Good', notes:''}); render(); } }
+  else if(act==='delrow'){
+    if(!editing) return;
+    var list = el.getAttribute('data-list'), i = +el.getAttribute('data-i');
+    if(editing.data[list] && editing.data[list].length>1){ editing.data[list].splice(i,1); render(); }
+    else toast('A form needs at least one row.', true);
+  }
+  else if(act==='clearDemo'){
+    if(window.confirm('Remove the sample landlord info and sample forms? Your own saved forms stay.')){
+      clearDemo(); editing = null; render(); toast('Sample data cleared.');
+    }
+  }
+  else if(act==='eraseAll'){
+    if(window.confirm('Erase ALL forms and settings from this device? Export a backup first if you need them.')){
+      state = blankState(true); editing = null; save(); render(); toast('Everything erased.');
+    }
+  }
+  else if(act==='saveSettings'){
+    var raw = {};
+    document.querySelectorAll('[data-s]').forEach(function(inp){ raw[inp.getAttribute('data-s')] = inp.value; });
+    var hadDemo = state.settingsDemo;
+    state.settings = sanitizeSettings(raw);
+    state.settingsDemo = false;
+    save(); render(); toast('Settings saved.' + (hadDemo ? '' : ''));
+  }
+  else if(act==='doExport'){
+    var payload = JSON.stringify({ app:'rentledger-forms', version:1, exportedAt: new Date().toISOString(), data: state }, null, 2);
+    try{
+      var blob = new Blob([payload], { type:'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'rentledger-forms-backup.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ try{ URL.revokeObjectURL(a.href); }catch(e){} }, 500);
+      toast('Backup downloaded.');
+    }catch(e){ toast('Download blocked — copy a backup from Help? Use a different browser to export.', true); }
+  }
+  else if(act==='showImport'){
+    var box = document.getElementById('importBox');
+    if(box) box.style.display = (box.style.display==='none' ? 'block' : 'none');
+  }
+  else if(act==='doImport'){
+    var txt = (document.getElementById('importText')||{}).value || '';
+    importFromText(txt);
+  }
+}
+function importFromText(txt){
+  var parsed;
+  try{ parsed = JSON.parse(txt); }catch(e){ toast('That file is not valid backup JSON.', true); return; }
+  if(!parsed || parsed.app!=='rentledger-forms' || !parsed.data){ toast('That is not a Forms Pack backup file.', true); return; }
+  state = sanitizeState(parsed.data);
+  if(!state.demoSeeded) state.demoSeeded = true;
+  editing = null;
+  save(); render(); toast('Backup imported.');
+}
+
+document.getElementById('tabs').addEventListener('click', function(e){
+  var b = e.target.closest('[data-tab]');
+  if(!b) return;
+  ui.tab = b.getAttribute('data-tab');
+  render();
+});
+var mainEl = document.getElementById('main');
+mainEl.addEventListener('click', function(e){
+  var b = e.target.closest('[data-act]');
+  if(b) handleAct(b.getAttribute('data-act'), b);
+});
+function editorInput(target){
+  if(!editing) return;
+  var k = target.getAttribute('data-k');
+  if(k){
+    var fdef = null;
+    FORM_TYPES[editing.type].fields.forEach(function(f){ if(f.k===k) fdef = f; });
+    if(!fdef) return;
+    if(fdef.type==='money') editing.data[k] = num(target.value);
+    else if(fdef.type==='number') editing.data[k] = intnum(target.value);
+    else editing.data[k] = target.value;
+    refreshDerived();
+    return;
+  }
+  var list = target.getAttribute('data-list');
+  if(list && editing.data[list]){
+    var i = +target.getAttribute('data-i'), fk = target.getAttribute('data-f');
+    var row = editing.data[list][i];
+    if(!row) return;
+    if(fk==='amount') row[fk] = num(target.value);
+    else row[fk] = target.value;
+    refreshDerived();
+  }
+}
+mainEl.addEventListener('input', function(e){
+  if(e.target.getAttribute && e.target.getAttribute('data-search')) {
+    ui.libQuery = e.target.value;
+    var ll = document.getElementById('libList');
+    if(ll) ll.innerHTML = libListHTML();
+    return;
+  }
+  editorInput(e.target);
+});
+mainEl.addEventListener('change', function(e){
+  if(e.target.id==='importFile'){
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){ var t = document.getElementById('importText'); if(t) t.value = String(reader.result||''); };
+    reader.readAsText(file);
+    return;
+  }
+  editorInput(e.target);
+});
+
+/* ---------------- init ---------------- */
+load();
+render();
+</script>
+
+<style id="ww-legal-css">
+.ww-legal-overlay{position:fixed;inset:0;z-index:99990;background:rgba(10,12,14,.72);display:flex;align-items:center;justify-content:center;padding:14px;box-sizing:border-box}
+.ww-legal-card{background:#fff;color:#17202a;border-radius:14px;max-width:560px;width:100%;max-height:92vh;overflow:auto;padding:22px 20px;box-sizing:border-box;box-shadow:0 18px 50px rgba(0,0,0,.35);font-family:inherit}
+.ww-legal-card h2{margin:0 0 4px;font-size:22px}
+.ww-legal-card h3{margin:16px 0 6px}
+.ww-legal-sum{font-size:16px;line-height:1.45;margin:12px 0}
+.ww-legal-sum p{margin:6px 0;font-weight:600}
+.ww-legal-note{font-size:13px;color:#445; margin:10px 0}
+.ww-legal-updated{background:#fff3cd;border:1px solid #e3c565;border-radius:8px;padding:8px 10px;font-size:14px;margin:10px 0}
+.ww-legal-btn{display:block;width:100%;min-height:48px;margin:10px 0;padding:12px 14px;font-size:16px;border-radius:10px;border:1px solid #9db2c3;background:#eef4f8;color:#17202a;cursor:pointer;box-sizing:border-box}
+.ww-legal-agree{background:#17603a;border-color:#17603a;color:#fff;font-weight:700}
+.ww-legal-page{position:fixed;inset:0;z-index:99980;background:#fff;color:#17202a;overflow:auto;padding:18px 16px 40px;box-sizing:border-box}
+.ww-legal-page .ww-legal-inner{max-width:680px;margin:0 auto}
+.ww-legal-page h2{font-size:21px}.ww-legal-page h3{font-size:17px;margin-top:18px}.ww-legal-page p,.ww-legal-page li{font-size:14.5px;line-height:1.55}
+.ww-legal-close{min-height:48px;padding:10px 18px;font-size:15px;border-radius:10px;border:1px solid #9db2c3;background:#eef4f8;cursor:pointer}
+.ww-legal-open-btn{min-height:48px}
+.ww-legal-check{display:flex;gap:10px;align-items:flex-start;margin:12px 0;font-size:15px;line-height:1.4;cursor:pointer;text-align:left}
+.ww-legal-check input{width:22px;height:22px;min-width:22px;margin-top:1px;cursor:pointer}
+.ww-legal-agree[disabled]{opacity:.45;cursor:not-allowed}
+[hidden]{display:none !important}
+</style>
+
+<div id="wwLegalOverlay" class="ww-legal-overlay" hidden>
+  <div class="ww-legal-card" role="dialog" aria-modal="true" aria-labelledby="wwLegalTitle">
+    <h2>RentLedger Forms Pack</h2>
+    <h3 id="wwLegalTitle" style="margin-top:2px">Terms of Use</h3>
+    <div id="wwLegalUpdated" class="ww-legal-updated" hidden>Our terms were updated (v1.0).</div>
+    <div class="ww-legal-sum">
+      <p>Your data stays on your device.</p>
+      <p>Estimates are aids, not guarantees.</p>
+      <p>You're responsible for checking outputs before you rely on them.</p>
+    </div>
+    <p class="ww-legal-note">The full Terms and Disclaimer are one tap away, now and any time in Settings → Legal.</p>
+    <button type="button" class="ww-legal-btn" id="wwLegalReadTerms">Read the full Terms</button>
+    
+    <label class="ww-legal-check" for="wwLegalCheck"><input type="checkbox" id="wwLegalCheck"><span>I have read and I agree to the Terms of Use</span></label>
+    <button type="button" class="ww-legal-btn ww-legal-agree" id="wwLegalAgree" disabled>I Agree</button>
+  </div>
+</div>
+<div id="wwLegalReader" class="ww-legal-page" hidden>
+  <div class="ww-legal-inner">
+    <button type="button" class="ww-legal-close" id="wwLegalReaderBack">← Back</button>
+    <div id="wwLegalReaderBody"></div>
+  </div>
+</div>
+<div id="wwLegalPage" class="ww-legal-page" hidden>
+  <div class="ww-legal-inner">
+    <button type="button" class="ww-legal-close" id="wwLegalPageClose">← Back</button>
+    <h2>Legal</h2>
+    <h3>Terms of Use</h3>
+    <div id="wwLegalTermsText"><h2>Terms of Use — White Wolf Digital Apps</h2>
+<p><strong>Version 1.0</strong></p>
+<p><strong>Seller: White Wolf Tree Service LLC, selling digital products under the name &quot;White Wolf Digital&quot;</strong></p>
+<p><strong>Contact: whitewolfoklahoma@gmail.com</strong></p>
+<hr>
+<h3>1. What you&#x27;re buying</h3>
+<p>Our apps (including ForgeFit AI, ForgeKitchen, TreeBid Pro, SnowBid,</p>
+<p>WashPrice Pro, RoofSquares, JobProfit Tracker, PastureLedger, and the other</p>
+<p>titles sold under White Wolf Digital) are single-file software tools. When</p>
+<p>you buy one, you are buying a <strong>license to use the file</strong>, not ownership of</p>
+<p>the software itself.</p>
+<h3>2. Your license</h3>
+<ul>
+<li>You may use the app for your own personal or business work.</li>
+<li>You may open it on your own devices (phone, tablet, computer) and move your</li>
+</ul>
+<p>  own data between them using the app&#x27;s built-in backup/export tools.</p>
+<ul>
+<li>You may <strong>not</strong> resell, redistribute, give away, upload, or share the app</li>
+</ul>
+<p>  file (or a copy of it) with anyone else — including posting it online,</p>
+<p>  bundling it with other products, or selling access to it.</p>
+<ul>
+<li>You may <strong>not</strong> claim the app as your own work, remove its branding or</li>
+</ul>
+<p>  notices, or use it to build a competing product for resale.</p>
+<ul>
+<li>One purchase = one buyer. A business purchase covers the buyer and their</li>
+</ul>
+<p>  own employees using it for that business&#x27;s work; it does not cover other</p>
+<p>  businesses.</p>
+<h3>3. Your data stays yours — and stays on your device</h3>
+<ul>
+<li>The current versions of our apps run <strong>entirely on your device</strong>. They have</li>
+</ul>
+<p>  no accounts, no sign-in, no analytics, and they collect, transmit, and store</p>
+<p>  <strong>none</strong> of your information on any server. We never see your data.</p>
+<ul>
+<li>Your records are stored in your browser/app storage on your device. **You</li>
+</ul>
+<p>  are responsible for backing them up** using the app&#x27;s export tools. If you</p>
+<p>  clear your browser data, lose your device, or uninstall the app, your</p>
+<p>  records may be permanently lost, and we cannot recover them — we never had</p>
+<p>  a copy.</p>
+<ul>
+<li>Files you export (backups, quotes, PDFs) are under your control. Where you</li>
+</ul>
+<p>  store or send them is up to you.</p>
+<h3>4. Estimates are tools, not guarantees</h3>
+<p>Every number our apps produce — bids, prices, costs, calorie targets,</p>
+<p>projections, schedules, totals — is an **estimate generated from the</p>
+<p>information you enter and the settings you choose**. Outputs are aids for</p>
+<p>your own judgment, not guarantees of price, profit, outcome, or result. You</p>
+<p>are responsible for checking any output before relying on it (see also the</p>
+<p>disclaimer that applies to your app: Health Disclaimer for fitness/nutrition</p>
+<p>apps, Estimator Disclaimer for contractor tools). If an input is wrong, the</p>
+<p>output will be wrong.</p>
+<h3>5. Acceptable use</h3>
+<p>Don&#x27;t use the apps to break the law, infringe anyone&#x27;s rights, or</p>
+<p>misrepresent quotes, invoices, or records to your own customers. For the</p>
+<p>fitness apps, the guardrails in the app (healthy-rate limits, calorie floor)</p>
+<p>are part of the product — don&#x27;t treat the app as a way around them.</p>
+<h3>6. Provided &quot;as is&quot;</h3>
+<p>The apps are provided **&quot;as is&quot; and &quot;as available,&quot; without warranties of</p>
+<p>any kind**, express or implied — including merchantability, fitness for a</p>
+<p>particular purpose, accuracy of calculations, and uninterrupted or</p>
+<p>error-free operation — to the maximum extent allowed by law. Software has</p>
+<p>bugs; browsers change; we work to fix problems but do not promise any app is</p>
+<p>error-free or will work on every device or browser forever.</p>
+<h3>7. Limitation of liability</h3>
+<p>To the maximum extent allowed by law:</p>
+<ul>
+<li>We are **not liable for indirect, incidental, special, or consequential</li>
+</ul>
+<p>  damages** — including lost profits, lost or mispriced jobs, lost data, or</p>
+<p>  business interruption — arising from use of the apps.</p>
+<ul>
+<li>Our total liability for any claim connected to an app is limited to the</li>
+</ul>
+<p>  <strong>amount you paid for that app</strong>.</p>
+<ul>
+<li>Nothing in these terms limits liability that cannot legally be limited.</li>
+</ul>
+<h3>8. Refunds</h3>
+<p>Refunds are handled **by the storefront you bought from, under that</p>
+<p>storefront&#x27;s policy** — Gumroad&#x27;s refund policy for Gumroad purchases, and</p>
+<p>Google Play&#x27;s refund policy for Play purchases. These terms do not add to,</p>
+<p>replace, or override the storefront&#x27;s refund rules. If a file is defective</p>
+<p>and won&#x27;t open, contact us at whitewolfoklahoma@gmail.com and we&#x27;ll fix or</p>
+<p>replace the file.</p>
+<h3>9. Updates and changes to these terms</h3>
+<ul>
+<li>We may release updated versions of an app. Updates may add, change, or</li>
+</ul>
+<p>  remove features.</p>
+<ul>
+<li>We may update these terms. The version you agreed to is recorded in the</li>
+</ul>
+<p>  app (version number and date) at first-run acceptance. If terms change,</p>
+<p>  the app may ask you to accept the new version once on next open. Updated</p>
+<p>  terms apply going forward, not retroactively.</p>
+<ul>
+<li>If you don&#x27;t agree to an updated version of the terms, stop using the app.</li>
+</ul>
+<h3>10. Governing law</h3>
+<p>These terms are governed by the laws of the <strong>State of Oklahoma</strong>, USA.</p>
+<p>(Attorney to confirm governing law and venue before publication.)</p>
+<h3>11. Contact</h3>
+<p>White Wolf Tree Service LLC (White Wolf Digital) —</p>
+<p>whitewolfoklahoma@gmail.com.</p>
+<hr>
+<h3>CONNECTED FEATURES — takes effect only when these features ship</h3>
+<p>*The sections below apply only to future connected features (device sync via</p>
+<p>Health Connect, AI voice logging, and the AI Goal Preview in ForgeFit). They</p>
+<p>do not apply to the current offline versions, which never transmit data.*</p>
+<ul>
+<li><strong>Opt-in only.</strong> Connected features are off by default. Each one asks for</li>
+</ul>
+<p>  your separate, explicit consent — on its own consent screen, in plain</p>
+<p>  language — before anything leaves your device. Declining never disables</p>
+<p>  the app&#x27;s offline features.</p>
+<ul>
+<li><strong>What gets sent.</strong> Only what the consent screen names, only when you use</li>
+</ul>
+<p>  the feature: for example, a meal description (text, or audio only if cloud</p>
+<p>  transcription is on) for AI voice logging, or the single photo you choose</p>
+<p>  for an AI Goal Preview.</p>
+<ul>
+<li><strong>No retention by us.</strong> Our relay service passes your request to the named</li>
+</ul>
+<p>  AI provider and keeps nothing — no copies of your photos, audio,</p>
+<p>  transcripts, or entries are stored on our servers. Provider handling is</p>
+<p>  described on the consent screen and in the Privacy Policy.</p>
+<ul>
+<li><strong>Health data stays on the device.</strong> Device sync (Health Connect) reads</li>
+</ul>
+<p>  your health data on your phone and stores it in the app on your phone. It</p>
+<p>  is not uploaded to us.</p>
+<ul>
+<li><strong>Allowances.</strong> Some connected features run on third-party AI services we</li>
+</ul>
+<p>  pay for per use, so they may include a monthly allowance described in the</p>
+<p>  app (for example, a set number of AI previews or voice entries per month),</p>
+<p>  with optional additional credits. Allowances and pricing will be shown in</p>
+<p>  the app before you use the feature; they are not a subscription unless the</p>
+<p>  app says so in plain words.</p>
+<ul>
+<li><strong>Permissions.</strong> Connected features may request device permissions (such</li>
+</ul>
+<p>  as Health Connect access or the microphone) at the moment you first use</p>
+<p>  them. You can revoke permissions any time in your device settings; the</p>
+<p>  related feature will simply stop working.</p></div>
+    
+    <h3>Privacy</h3>
+    <p>This app has no accounts and collects no data. Everything you enter is stored only on this device, in this browser's local storage. Nothing is uploaded, tracked, or shared. Exported backup files are under your control — where you store or send them is up to you. If you clear your browser data, lose your device, or uninstall the app, your records may be permanently lost, so keep backups using the app's export tools.</p>
+    <p id="wwLegalAcceptLine"></p>
+    <p><strong>Sold by White Wolf Tree Service LLC (White Wolf Digital) — whitewolfoklahoma@gmail.com</strong></p>
+  </div>
+</div>
+
+<script>
+/* White Wolf Digital — in-app legal pattern v1 (Terms acceptance + Settings > Legal) */
+const TERMS_VERSION = "1.0";
+(function(){
+  var WW_KEY = "rentledgerforms_v1";
+  var WW_SAVE = "save";
+  var WW_DISC = false;
+  function wwRaw(){ try{ var r = localStorage.getItem(WW_KEY); return r ? JSON.parse(r) : null; }catch(e){ return null; } }
+  function wwStateObj(){ try{ if(typeof state !== "undefined" && state && typeof state === "object") return state; }catch(e){} return null; }
+  function wwGetLegal(){
+    var st = wwStateObj(); if(st && st.legal && typeof st.legal === "object") return st.legal;
+    var r = wwRaw(); if(r && r.legal && typeof r.legal === "object") return r.legal;
+    return null;
+  }
+  function wwPersist(rec){
+    var st = wwStateObj();
+    if(st){ st.legal = rec;
+      try{ if(WW_SAVE === "saveState" && typeof saveState === "function"){ saveState(); return; } }catch(e){}
+      try{ if(WW_SAVE === "save" && typeof save === "function"){ save(); return; } }catch(e){}
+    }
+    try{ var r = wwRaw() || {}; r.legal = rec; localStorage.setItem(WW_KEY, JSON.stringify(r)); }catch(e){}
+  }
+  function wwAcceptLine(){
+    var el = document.getElementById("wwLegalAcceptLine"); if(!el) return;
+    var rec = wwGetLegal();
+    if(rec && rec.acceptedDate) el.textContent = "You agreed to Terms v" + (rec.termsVersion || TERMS_VERSION) + " on " + rec.acceptedDate + ".";
+    else el.textContent = "No acceptance recorded yet on this device.";
+  }
+  function wwShowReader(which){
+    var body = document.getElementById("wwLegalReaderBody");
+    var src = document.getElementById(which === "disc" ? "wwLegalDiscText" : "wwLegalTermsText");
+    if(!body || !src) return;
+    body.innerHTML = src.innerHTML;
+    document.getElementById("wwLegalReader").hidden = false;
+  }
+  function wwOpenLegal(){ wwAcceptLine(); document.getElementById("wwLegalPage").hidden = false; }
+  window.__wwOpenLegal = wwOpenLegal;
+  document.addEventListener("click", function(ev){
+    var t = ev.target && ev.target.closest ? ev.target.closest("[data-ww-legal]") : null;
+    if(t){ ev.preventDefault(); wwOpenLegal(); }
+  });
+  var agreeBtn = document.getElementById("wwLegalAgree");
+  var wwCheck = document.getElementById("wwLegalCheck");
+  function wwGate(){ if(agreeBtn && wwCheck) agreeBtn.disabled = !wwCheck.checked; }
+  if(wwCheck) wwCheck.addEventListener("change", wwGate);
+  wwGate();
+  if(agreeBtn) agreeBtn.addEventListener("click", function(){
+    if(wwCheck && !wwCheck.checked){ wwGate(); return; }
+    var rec = { termsVersion: TERMS_VERSION, acceptedDate: new Date().toISOString().slice(0,10), disclaimerShown: WW_DISC };
+    wwPersist(rec);
+    document.getElementById("wwLegalOverlay").hidden = true;
+    wwAcceptLine();
+  });
+  var rt = document.getElementById("wwLegalReadTerms");
+  if(rt) rt.addEventListener("click", function(){ wwShowReader("terms"); });
+  var rd = document.getElementById("wwLegalReadDisc");
+  if(rd) rd.addEventListener("click", function(){ wwShowReader("disc"); });
+  var rb = document.getElementById("wwLegalReaderBack");
+  if(rb) rb.addEventListener("click", function(){ document.getElementById("wwLegalReader").hidden = true; });
+  var pc = document.getElementById("wwLegalPageClose");
+  if(pc) pc.addEventListener("click", function(){ document.getElementById("wwLegalPage").hidden = true; });
+  var rec = wwGetLegal();
+  if(rec && rec.termsVersion === TERMS_VERSION){
+    var st2 = wwStateObj();
+    if(st2 && !st2.legal) wwPersist(rec);
+    wwAcceptLine();
+  } else {
+    if(rec && rec.termsVersion){ var u = document.getElementById("wwLegalUpdated"); if(u) u.hidden = false; }
+    document.getElementById("wwLegalOverlay").hidden = false;
+  }
+})();
+</script>
+
+</body>
+</html>
